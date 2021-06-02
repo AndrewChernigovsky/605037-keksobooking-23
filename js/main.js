@@ -1,23 +1,24 @@
-function getRandomNumber (begin, end) {
+function getRandomNumber(begin, end) {
   let result = 0;
   if (begin >= 0 && begin < end) {
-    result = Math.random () * ((end - begin) + 1);
+    result = Math.random() * ((end - begin) + 1);
     return result;
   } else {
-      return 'неправильные аргументы'
+    return 'неправильные аргументы';
   }
 }
 
-console.log (getRandomNumber (1, 700))
-
-function getRandomNumber1 (begin, end, number) {
+function getRandomNumber1(begin, end, number) {
   let result = 0;
   if (begin >= 0 && begin < end) {
-    result = Math.random () * ((end - begin) + 1);
-    return result.toFixed (number);
+    result = Math.random() * ((end - begin) + 1);
+    return result.toFixed(number);
   } else {
-      return 'неправильные аргументы'
+    return 'неправильные аргументы';
   }
 }
 
-console.log (getRandomNumber1 (1, 700, 1))
+// eslint-disable-next-line no-console
+console.log(getRandomNumber(1, 700));
+// eslint-disable-next-line no-console
+console.log(getRandomNumber1(1, 700, 1));
