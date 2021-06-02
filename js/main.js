@@ -8,7 +8,9 @@ function getRandomNumber (begin, end) {
   }
 }
 
-function getRandomNumber (begin, end, number) {
+console.log (getRandomNumber (1, 700))
+
+function getRandomNumber1 (begin, end, number) {
   let result = 0;
   if (begin >= 0 && begin < end) {
     result = Math.random () * ((end - begin) + 1);
@@ -18,4 +20,4 @@ function getRandomNumber (begin, end, number) {
   }
 }
 
-console.log (getRandomNumber (1, 700, 1))
+console.log (getRandomNumber1 (1, 700, 1))
