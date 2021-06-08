@@ -108,6 +108,7 @@ function makeLocation() {
 const makeFullOffer = () => {
   const offers = [];
 
+  // eslint-disable-next-line id-length
   for (let i = 0; i <= 10; i++) {
     const offer = {};
     offer.author = makeAuthor();
