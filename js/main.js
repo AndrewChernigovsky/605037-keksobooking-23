@@ -18,51 +18,6 @@
 //   }
 // }
 
-// // eslint-disable-next-line no-console
-// console.log(getRandomNumber(1, 700));
-// // eslint-disable-next-line no-console
-// console.log(getRandomNumber1(1, 700, 1));
-
-
-// let author = {
-//   avatar: 'img',
-// };
-
-// let offer = {
-//   title: 'Keks',
-
-//   address: '{{location.x}}, {{location.y}}',
-
-//   price: 0,
-
-//   type: 'palace',
-
-//   rooms: 2,
-
-//   guests: 30,
-
-//   checkin: '12:00',
-
-//   checkout: '12:00',
-
-//   features: 'wifi',
-
-//   description: 'goodflat',
-
-//   photos: 'jpg',
-// };
-
-
-// function getRandomNumber(begin, end) {
-//   let result = 0;
-//   if (begin >= 0 && begin < end) {
-//     result = Math.random() * ((end - begin) + 1);
-//     return result;
-//   } else {
-//     return 'неправильные аргументы';
-//   }
-// }
-
 function getRandomNumber1(begin, end, number) {
   let result = 0;
   if (begin >= 0 && begin < end) {
@@ -133,8 +88,6 @@ function makeOffer() {
 
   const xphotos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
-  const randomPhotos = getRandomNumber1(0, xphotos.length - 1, 0);
-
   const xphotosSlice = xphotos.slice(0, getRandomNumber1(0, xphotos.length, 0));
 
   offer.photos = xphotosSlice;
@@ -153,10 +106,10 @@ function makeLocation() {
 }
 
 const makeFullOffer = () => {
-  offers = [];
+  const offers = [];
 
   for (let i = 0; i <= 10; i++) {
-    let offer = {};
+    const offer = {};
     offer.author = makeAuthor();
     offer.offer = makeOffer();
     offer.location = makeLocation();
@@ -165,6 +118,6 @@ const makeFullOffer = () => {
   }
 
   return offers;
-}
+};
 
 makeFullOffer();
