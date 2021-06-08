@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable id-length */
-function getRandomNumber1 (a, b, digits = 1) {
-  const lower = Math.min(Math.abs(a), Math.abs(b));
-  const upper = Math.max(Math.abs(a), Math.abs(b));
+function getRandomNumber1 (first, second, digits = 1) {
+  const lower = Math.min(Math.abs(first), Math.abs(second));
+  const upper = Math.max(Math.abs(first), Math.abs(second));
   const result = Math.random() * (upper - lower) + lower;
 
   return result.toFixed(digits);
 }
 
-function getRandomNumber (a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+function getRandomNumber (first, second) {
+  const lower = Math.ceil(Math.min(Math.abs(first), Math.abs(second)));
+  const upper = Math.floor(Math.max(Math.abs(first), Math.abs(second)));
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
