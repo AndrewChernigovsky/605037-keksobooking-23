@@ -1,22 +1,22 @@
-function getRandomNumber(begin, end) {
-  let result = 0;
-  if (begin >= 0 && begin < end) {
-    result = Math.random() * ((end - begin) + 1);
-    return result;
-  } else {
-    return 'неправильные аргументы';
-  }
-}
+// function getRandomNumber(begin, end) {
+//   let result = 0;
+//   if (begin >= 0 && begin < end) {
+//     result = Math.random() * ((end - begin) + 1);
+//     return result;
+//   } else {
+//     return 'неправильные аргументы';
+//   }
+// }
 
-function getRandomNumber1(begin, end, number) {
-  let result = 0;
-  if (begin >= 0 && begin < end) {
-    result = Math.random() * ((end - begin) + 1);
-    return result.toFixed(number);
-  } else {
-    return 'неправильные аргументы';
-  }
-}
+// function getRandomNumber1(begin, end, number) {
+//   let result = 0;
+//   if (begin >= 0 && begin < end) {
+//     result = Math.random() * ((end - begin) + 1);
+//     return result.toFixed(number);
+//   } else {
+//     return 'неправильные аргументы';
+//   }
+// }
 
 // // eslint-disable-next-line no-console
 // console.log(getRandomNumber(1, 700));
@@ -53,103 +53,118 @@ function getRandomNumber1(begin, end, number) {
 // };
 
 
-const OFFER = {
-  author: { avatar: 'img/avatars/user0${xx}.png' },
-  offer: {
-    title: ['Title', 'Keks', 'Keksobooking', 'Feature'],
-    address: '{{location.x}}, {{location.y}}',
-    price: 0,
-    type: 'palace',
-    rooms: 2,
-    guests: 30,
-    checkin: '12:00',
-    checkout: '12:00',
-    features: 'wifi',
-    description: 'econom',
-    photos: 'jpg',
-  },
+// function getRandomNumber(begin, end) {
+//   let result = 0;
+//   if (begin >= 0 && begin < end) {
+//     result = Math.random() * ((end - begin) + 1);
+//     return result;
+//   } else {
+//     return 'неправильные аргументы';
+//   }
+// }
 
-  location: {
-    lat: '23423',
-    lng: 'sfsf',
-  },
-};
+function getRandomNumber1(begin, end, number) {
+  let result = 0;
+  if (begin >= 0 && begin < end) {
+    result = Math.random() * ((end - begin) + number);
+    return result.toFixed(number);
+  } else {
+    return 'неправильные аргументы';
+  }
+}
 
 function makeAuthor() {
+  const author = {};
   const xx = getRandomNumber1(1, 8, 0);
-  OFFER.author.avatar = `img/avatars/user0${xx}.png`;
+
+  author.avatar = `img/avatars/user0${xx}.png`;
+
+  return author;
 }
 
 makeAuthor();
 
 function makeOffer() {
-  const xtitle = ['Comic', 'Keks', 'Cow and cowboy', 'Feature'];
-  const randomTitle = Math.floor(Math.random() * xtitle.length);
-  OFFER.offer.title = `${xtitle[randomTitle]}`;
-  console.log(xtitle, xtitle.randomTitle);
+  const offer = {};
 
-  const xtype = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+  const xtitle = ['Comic', 'Keks', 'Cow and cowboy', 'Feature'];
+  const randomTitle = getRandomNumber1(0, xtitle.length - 1, 0);
+
+  offer.title = xtitle[randomTitle];
+
+  const address = `${getRandomNumber1(0, 40, 5)}, ${getRandomNumber1(0, 40, 5)}`;
+
+  offer.address = address;
 
   const xprice = getRandomNumber1(0, 100000, 2);
-  OFFER.offer.price = `${xprice} P`;
-  console.log(xprice);
+  offer.price = xprice;
 
-  const randomType = Math.floor(Math.random() * xtype.length);
-  OFFER.offer.type = `${xtype[randomType]}`;
-  console.log(xtype);
+  const xtype = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+  const randomType = getRandomNumber1(0, xtype.length - 1, 0);
 
-  const xrooms = getRandomNumber1(0, 10);
-  OFFER.offer.rooms = `${xrooms}`;
-  console.log(xrooms);
+  offer.type = xtype[randomType];
 
-  const xguests = getRandomNumber1(0, 100);
-  OFFER.offer.guests = `${xguests}`;
-  console.log(xguests);
+  const xrooms = getRandomNumber1(0, 10, 0);
+  offer.rooms = xrooms;
+
+  const xguests = getRandomNumber1(0, 100, 0);
+  offer.guests = xguests;
 
   const xcheckin = ['12:00', '13:00', '14:00'];
+  const randomCheckin = getRandomNumber1(0, xcheckin.length - 1, 0);
+  offer.checkin = xcheckin[randomCheckin];
+
   const xcheckout = ['12:00', '13:00', '14:00'];
 
-  const randomCheckin = Math.floor(Math.random() * xcheckin.length);
-  OFFER.offer.checkin = `${xcheckin[randomCheckin]}`;
-  console.log(xcheckin, xcheckin.randomCheckin);
-
-  const randomCheckout = Math.floor(Math.random() * xcheckout.length);
-  OFFER.offer.checkout = `${xcheckout[randomCheckout]}`;
-  console.log(xcheckout, xcheckout.randomCheckout);
+  const randomCheckout = getRandomNumber1(0, xcheckout.length - 1, 0);
+  offer.checkout = xcheckout[randomCheckout];
 
   const xfeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
-  const randomFeatures = Math.floor(Math.random() * xfeatures.length);
-  OFFER.offer.features = `${xfeatures[randomFeatures]}`;
-  console.log(xfeatures, xfeatures.randomFeatures);
+  const xfeaturesSlice = xfeatures.slice(0, getRandomNumber1(0, xfeatures.length, 0));
+
+  offer.features = xfeaturesSlice;
 
   const xdescription = ['business', 'econom', 'luxery'];
 
-  const randomDescription = Math.floor(Math.random() * xdescription.length);
-  OFFER.offer.description = `${xdescription[randomDescription]}`;
-  console.log(xdescription, xdescription.randomDescription);
+  const randomDescription = getRandomNumber1(0, xdescription.length - 1, 0);
+
+  offer.description = xdescription[randomDescription];
 
   const xphotos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
 
-  const randomPhotos = Math.floor(Math.random() * xphotos.length);
-  OFFER.offer.photos = `${xphotos[randomPhotos]}`;
-  console.log(xphotos, xphotos.randomPhotos);
+  const randomPhotos = getRandomNumber1(0, xphotos.length - 1, 0);
 
+  const xphotosSlice = xphotos.slice(0, getRandomNumber1(0, xphotos.length, 0));
+
+  offer.photos = xphotosSlice;
+
+  return offer;
 }
-
-makeOffer();
 
 function makeLocation() {
-
+  const location = {};
   const xlat = getRandomNumber1(35.65000, 35.70000, 5);
-  OFFER.location.lat = `${xlat}`;
-  console.log(xlat);
-
+  location.lat = xlat;
   const xlng = getRandomNumber1(139.70000, 139.80000, 5);
-  OFFER.location.lng = `${xlng}`;
-  console.log(xlng);
+  location.lng = xlng;
 
+  return location;
 }
 
-makeLocation();
-console.log(OFFER);
+const makeFullOffer = () => {
+  offers = [];
+
+  for (let i = 0; i <= 10; i++) {
+    let offer = {};
+    offer.author = makeAuthor();
+    offer.offer = makeOffer();
+    offer.location = makeLocation();
+
+    offers[i] = offer;
+  }
+
+  return offers;
+}
+
+makeFullOffer();
