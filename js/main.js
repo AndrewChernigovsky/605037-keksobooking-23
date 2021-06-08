@@ -1,31 +1,19 @@
-// function getRandomNumber(begin, end) {
-//   let result = 0;
-//   if (begin >= 0 && begin < end) {
-//     result = Math.random() * ((end - begin) + 1);
-//     return result;
-//   } else {
-//     return 'неправильные аргументы';
-//   }
-// }
+/* eslint-disable no-unused-vars */
+/* eslint-disable id-length */
+function getRandomNumber1 (a, b, digits = 1) {
+  const lower = Math.min(Math.abs(a), Math.abs(b));
+  const upper = Math.max(Math.abs(a), Math.abs(b));
+  const result = Math.random() * (upper - lower) + lower;
 
-// function getRandomNumber1(begin, end, number) {
-//   let result = 0;
-//   if (begin >= 0 && begin < end) {
-//     result = Math.random() * ((end - begin) + 1);
-//     return result.toFixed(number);
-//   } else {
-//     return 'неправильные аргументы';
-//   }
-// }
+  return result.toFixed(digits);
+}
 
-function getRandomNumber1(begin, end, number) {
-  let result = 0;
-  if (begin >= 0 && begin < end) {
-    result = Math.random() * ((end - begin) + number);
-    return result.toFixed(number);
-  } else {
-    return 'неправильные аргументы';
-  }
+function getRandomNumber (a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+
+  return Math.floor(result);
 }
 
 function makeAuthor() {
