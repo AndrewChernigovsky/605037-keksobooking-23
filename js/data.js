@@ -1,17 +1,17 @@
 import  {getRandomNumber1} from './utilits.js';
 
-function makeAuthor() {
+const makeAuthor = () => {
   const author = {};
   const xx = getRandomNumber1(1, 8, 0);
 
   author.avatar = `img/avatars/user0${xx}.png`;
 
   return author;
-}
+};
 
 makeAuthor();
 
-function makeOffer() {
+const makeOffer = () => {
   const offer = {};
 
   const xtitle = ['Comic', 'Keks', 'Cow and cowboy', 'Feature'];
@@ -65,9 +65,9 @@ function makeOffer() {
   offer.photos = xphotosSlice;
 
   return offer;
-}
+};
 
-function makeLocation() {
+const makeLocation = () => {
   const location = {};
   const xlat = getRandomNumber1(35.65000, 35.70000, 5);
   location.lat = xlat;
@@ -75,7 +75,7 @@ function makeLocation() {
   location.lng = xlng;
 
   return location;
-}
+};
 
 const makeFullOffer = () => {
   const offers = [];
