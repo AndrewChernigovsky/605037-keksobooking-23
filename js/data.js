@@ -2,9 +2,11 @@ import  {getRandomNumber1} from './utilits.js';
 
 const makeAuthor = () => {
   const author = {};
-  const xx = getRandomNumber1(1, 8, 0);
-
+  const xx = getRandomNumber1(1, 11, 0);
   author.avatar = `img/avatars/user0${xx}.png`;
+  if (xx > 9) {
+    author.avatar = `img/avatars/user${xx}.png`;
+  }
 
   return author;
 };
@@ -23,7 +25,7 @@ const makeOffer = () => {
 
   offer.address = address;
 
-  const xprice = getRandomNumber1(0, 100000, 2);
+  const xprice = getRandomNumber1(0, 100000, 0);
   offer.price = xprice;
 
   const xtype = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
@@ -31,7 +33,7 @@ const makeOffer = () => {
 
   offer.type = xtype[randomType];
 
-  const xrooms = getRandomNumber1(0, 10, 0);
+  const xrooms = getRandomNumber1(1, 10, 0);
   offer.rooms = xrooms;
 
   const xguests = getRandomNumber1(0, 100, 0);
@@ -52,15 +54,14 @@ const makeOffer = () => {
 
   offer.features = xfeaturesSlice;
 
-  const xdescription = ['business', 'econom', 'luxery'];
+  const xdescription = ['Место по кайфу', 'Тебе понравится, здесь отличный вид на море', 'Не оазис конечно, но и ты не принц'];
 
   const randomDescription = getRandomNumber1(0, xdescription.length - 1, 0);
 
   offer.description = xdescription[randomDescription];
 
   const xphotos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg'];
-
-  const xphotosSlice = xphotos.slice(0, getRandomNumber1(0, xphotos.length, 0));
+  const xphotosSlice = xphotos.slice(0, getRandomNumber1(1, xphotos.length, 0));
 
   offer.photos = xphotosSlice;
 
@@ -96,3 +97,5 @@ const makeFullOffer = () => {
 makeFullOffer();
 
 export {makeAuthor, makeOffer, makeLocation, makeFullOffer};
+
+// https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg

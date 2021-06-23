@@ -1,4 +1,3 @@
-import  {makeFullOffer} from './data.js';
+import {makeCard, offers, insertElement} from './generation.js';
 
-makeFullOffer();
-
+insertElement(makeCard(offers[0]), '#map-canvas');
