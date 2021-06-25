@@ -50,7 +50,7 @@ const makeOffer = () => {
 
   const xfeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
-  const xfeaturesSlice = xfeatures.slice(0, getRandomNumber1(0, 1, 0));
+  const xfeaturesSlice = xfeatures.slice(0, getRandomNumber1(0, xfeatures.length, 0));
 
   offer.features = xfeaturesSlice;
 
