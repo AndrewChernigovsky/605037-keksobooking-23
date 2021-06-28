@@ -14,36 +14,29 @@ const makeCard = function (data) {
   avatarContainer.src = data.author.avatar;
   avatarContainer.alt = 'Аватар пользователя';
 
-  if (avatarContainer.textContent.length === 0) {
-    avatarContainer.remove();
+  if (data.author.avatar.length === 0) {
+    avatarContainer.delete();
   } else {
-    avatarContainer.textContent;
+    avatarContainer.src = data.author.avatar;
   }
 
   const cardTitle = card.querySelector('.popup__title');
   cardTitle.textContent = data.offer.title;
 
-  if (cardTitle.textContent.length === 0) {
-    cardTitle.remove();
-  } else {
-    cardTitle.textContent;
-  }
-
   const cardAddress = card.querySelector('.popup__text--address');
-  cardAddress.textContent = data.offer.address;
 
-  if (cardAddress.textContent.length === 0) {
-    cardAddress.remove();
+  if (data.offer.address.length === 0) {
+    cardAddress.delete();
   } else {
-    cardAddress.textContent;
+    cardAddress.textContent = data.offer.address;
   }
 
   const cardPrice = card.querySelector('.popup__text--price');
-  cardPrice.textContent = data.offer.price + ' ₽/ночь';
-  if (cardPrice.textContent.length === 0) {
+
+  if (data.offer.price === 0) {
     cardPrice.remove();
   } else {
-    cardPrice.textContent;
+    cardPrice.textContent = data.offer.price + ' ₽/ночь';
   }
 
   switch (data.offer.type) {
@@ -55,71 +48,55 @@ const makeCard = function (data) {
   }
 
   const cardType = card.querySelector('.popup__type');
-  cardType.textContent = type;
 
-  if (cardType.textContent.length === 0) {
-    cardType.remove();
+
+  if (data.offer.type.length === 0) {
+    cardType.delete();
   } else {
-    cardType.textContent;
+    cardType.textContent = type;
   }
 
   const cardCapacity = card.querySelector('.popup__text--capacity');
   cardCapacity.textContent = data.offer.rooms + ' комнаты для ' + data.offer.guests + ' гостей';
 
-  if (cardCapacity.textContent.length === 0) {
-    cardCapacity.remove();
-  } else {
-    cardCapacity.textContent;
-  }
-
   const cardTime = card.querySelector('.popup__text--time');
   cardTime.textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
-
-  if (cardTime.textContent.length === 0) {
-    cardTime.remove();
-  } else {
-    cardTime.textContent;
-  }
 
   const featureContainer = card.querySelector('.popup__features');
   featureContainer.innerHTML = '';
 
-  for (let i = 0; i < data.offer.features.length; i++) {
-    const element = document.createElement('li');
-    element.classList.add('popup__feature', 'popup__feature--' + data.offer.features[i]);
-    featureContainer.appendChild(element);
-
-    if (data.offer.features.length === 0) {
-      featureContainer.remove();
-    } else {
-      featureContainer;
+  if (data.offer.features.length === 0) {
+    featureContainer.delete();
+  } else {
+    for (let i = 0; i < data.offer.features.length; i++) {
+      const element = document.createElement('li');
+      element.classList.add('popup__feature', 'popup__feature--' + data.offer.features[i]);
+      featureContainer.appendChild(element);
     }
   }
 
   const cardDescription = card.querySelector('.popup__description');
-  cardDescription.textContent = data.offer.description;
 
-  if (cardDescription.textContent.length === 0) {
-    cardDescription.remove();
+  if (data.offer.description.length === 0) {
+    cardDescription.delete();
   } else {
-    cardDescription.textContent;
+    cardDescription.textContent = data.offer.description;
   }
 
   const photosContainer = card.querySelector('.popup__photos');
   photosContainer.innerHTML = '';
-  for (let i = 0; i < data.offer.photos.length; i++) {
-    const element = document.createElement('img');
-    element.classList.add('popup__photo');
-    element.style.width = '45px';
-    element.style.height = '40px';
-    element.alt = 'Фотография жилья';
-    photosContainer.appendChild(element);
-    element.src = data.offer.photos[i];
 
-    if (photosContainer.length === 0) {
-      photosContainer.remove();
-    } else {
-      photosContainer;
+  if (data.offer.photos.length === 0) {
+    photosContainer.delete();
+  } else {
+    for (let i = 0; i < data.offer.photos.length; i++) {
+      const element = document.createElement('img');
+      element.classList.add('popup__photo');
+      element.style.width = '45px';
+      element.style.height = '40px';
+      element.alt = 'Фотография жилья';
+      photosContainer.appendChild(element);
+      element.src = data.offer.photos[i];
     }
   }
 
