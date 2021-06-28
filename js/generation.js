@@ -11,13 +11,12 @@ const makeCard = function (data) {
   const card = cardTemplate.cloneNode(true);
 
   const avatarContainer = card.querySelector('.popup__avatar');
-  avatarContainer.src = data.author.avatar;
-  avatarContainer.alt = 'Аватар пользователя';
 
   if (data.author.avatar.length === 0) {
     avatarContainer.delete();
   } else {
     avatarContainer.src = data.author.avatar;
+    avatarContainer.alt = 'Аватар пользователя';
   }
 
   const cardTitle = card.querySelector('.popup__title');
@@ -26,7 +25,7 @@ const makeCard = function (data) {
   const cardAddress = card.querySelector('.popup__text--address');
 
   if (data.offer.address.length === 0) {
-    cardAddress.delete();
+    cardAddress.remove();
   } else {
     cardAddress.textContent = data.offer.address;
   }
@@ -51,7 +50,7 @@ const makeCard = function (data) {
 
 
   if (data.offer.type.length === 0) {
-    cardType.delete();
+    cardType.remove();
   } else {
     cardType.textContent = type;
   }
@@ -78,7 +77,7 @@ const makeCard = function (data) {
   const cardDescription = card.querySelector('.popup__description');
 
   if (data.offer.description.length === 0) {
-    cardDescription.delete();
+    cardDescription.remove();
   } else {
     cardDescription.textContent = data.offer.description;
   }
