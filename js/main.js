@@ -1,9 +1,3 @@
-import  {getRandomNumber1} from './utilits.js';
-import  {makeAuthor, makeOffer, makeLocation, makeFullOffer} from './data.js';
+import {makeCard, offers, insertElement} from './generation.js';
 
-getRandomNumber1();
-makeAuthor();
-makeOffer();
-makeLocation();
-
-makeFullOffer();
+insertElement(makeCard(offers[0]), '#map-canvas');
