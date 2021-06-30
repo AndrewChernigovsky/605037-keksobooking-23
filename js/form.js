@@ -1,24 +1,32 @@
-const element = document.querySelector('.ad-form');
-const elementMapFilters = document.querySelector('.map__filters');
-const elementMap = document.querySelector('.map__canvas');
+const formDataFilter = document.querySelector('.ad-form');
+const formFieldsetHeader = document.querySelector('.ad-form-header');
+const formFieldset = document.querySelectorAll('.ad-form__element');
+const formMap = document.querySelector('.map__filters');
+const formMapOption = document.querySelectorAll('.map__filter');
 
-const makeFormToggle = function() {
-  element.classList.add('.ad-form--disabled');
-  elementMapFilters.setAttribute('disabled', 'disabled');
+const formSwitch = (toggle) => {
+  const classFormDis = formDataFilter.classList.contains('ad-form--disabled');
+  const classFormMapDis = formDataFilter.classList.contains('map__filters--disabled');
 
-  element = element('disabled');
-}
-
-const makeFormDisabled = () => {
-
-  if (elementMapFilters.setAttribute('disabled', 'disabled')) {
-    elementMap.style.backround = 'gray';
-    elementMapFilters.removeAttribute('disabled', 'disabled');
+  for (let i = 0; i < formFieldset.length; i++) {
+    formFieldset[i].disabled = toggle;
   }
 
-  if (element.classList.contains('.ad-form--disabled')) {
-    element.classList.remove('.ad-form--disabled');
+  for (let i = 0; i < formMapOption.length; i++) {
+    formMapOption[i].disabled = toggle;
+  }
+
+  if (toggle === true) {
+    formDataFilter.classList.add('ad-form--disabled');
+    formMap.classList.add('map__filters--disabled');
+    formFieldsetHeader.disabled = true;
+  } else {
+    formDataFilter.classList.remove('ad-form--disabled');
+    formMap.classList.remove('map__filters--disabled');
+    formFieldsetHeader.disabled = false;
   }
 };
 
-export {makeFormDisabled, makeFormToggle};
+
+
+export { formSwitch };
