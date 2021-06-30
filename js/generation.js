@@ -65,7 +65,7 @@ const makeCard = function (data) {
   featureContainer.innerHTML = '';
 
   if (data.offer.features.length === 0) {
-    featureContainer.delete();
+    featureContainer.remove();
   } else {
     for (let i = 0; i < data.offer.features.length; i++) {
       const element = document.createElement('li');
