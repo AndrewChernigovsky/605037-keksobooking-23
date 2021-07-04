@@ -5,4 +5,3 @@ insertElement(makeCard(offers[0]), '#map-canvas');
 
 formSwitch(true);
 formSwitch(false);
-

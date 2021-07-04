@@ -37,8 +37,10 @@ room.addEventListener('change', () => {
 const typeHouseSelect = document.querySelector('#type');
 const housePrice = document.querySelector('#price');
 
+
 const onTypeChange = () => {
   housePrice.placeholder = minPrice[typeHouseSelect.value];
+  housePrice.min = minPrice[typeHouseSelect.value];
 };
 
 typeHouseSelect.addEventListener('change', onTypeChange);
@@ -65,5 +67,12 @@ const formSwitch = (toggle) => {
     formFieldsetHeader.disabled = false;
   }
 };
+
+(function () {
+  const formTimeIn = document.querySelector('#timein');
+  const formTimeOut = document.querySelector('#timeout');
+  formTimeIn.onchange = function () { formTimeOut.selectedIndex = this.selectedIndex; };
+  formTimeOut.onchange = function () { formTimeIn.selectedIndex = this.selectedIndex; };
+})();
 
 export { formSwitch };
