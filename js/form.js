@@ -37,8 +37,10 @@ room.addEventListener('change', () => {
 const typeHouseSelect = document.querySelector('#type');
 const housePrice = document.querySelector('#price');
 
+
 const onTypeChange = () => {
   housePrice.placeholder = minPrice[typeHouseSelect.value];
+  housePrice.min = minPrice[typeHouseSelect.value];
 };
 
 typeHouseSelect.addEventListener('change', onTypeChange);
@@ -65,5 +67,16 @@ const formSwitch = (toggle) => {
     formFieldsetHeader.disabled = false;
   }
 };
+
+const formTimeIn = document.querySelector('#timein');
+const formTimeOut = document.querySelector('#timeout');
+
+formTimeIn.addEventListener('change', formTimeOut.onchage = function () {
+  formTimeOut.value = formTimeIn.value;
+});
+
+formTimeOut.addEventListener('change', formTimeIn.onchage = function () {
+  formTimeIn.value = formTimeOut.value;
+});
 
 export { formSwitch };
