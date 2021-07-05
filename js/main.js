@@ -1,5 +1,6 @@
 import {makeCard, offers, insertElement} from './generation.js';
 import {formSwitch} from './form.js';
+import * as map from './map.js';
 
 insertElement(makeCard(offers[0]), '#map-canvas');
 

@@ -68,11 +68,15 @@ const formSwitch = (toggle) => {
   }
 };
 
-(function () {
-  const formTimeIn = document.querySelector('#timein');
-  const formTimeOut = document.querySelector('#timeout');
-  formTimeIn.onchange = function () { formTimeOut.selectedIndex = this.selectedIndex; };
-  formTimeOut.onchange = function () { formTimeIn.selectedIndex = this.selectedIndex; };
-})();
+const formTimeIn = document.querySelector('#timein');
+const formTimeOut = document.querySelector('#timeout');
+
+formTimeIn.addEventListener('change', formTimeOut.onchage = function () {
+  formTimeOut.value = formTimeIn.value;
+});
+
+formTimeOut.addEventListener('change', formTimeIn.onchage = function () {
+  formTimeIn.value = formTimeOut.value;
+});
 
 export { formSwitch };
