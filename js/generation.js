@@ -1,10 +1,3 @@
-
-import { makeFullOffer } from './data.js';
-
-makeFullOffer();
-
-const offers = makeFullOffer();
-
 const makeCard = function (data) {
   let type;
   const cardTemplate = document.querySelector('#card').content;
@@ -35,7 +28,7 @@ const makeCard = function (data) {
   if (data.offer.price === 0) {
     cardPrice.remove();
   } else {
-    cardPrice.textContent = data.offer.price + ' ₽/ночь';
+    cardPrice.textContent = `${data.offer.price} ₽/ночь`;
   }
 
   switch (data.offer.type) {
@@ -56,10 +49,10 @@ const makeCard = function (data) {
   }
 
   const cardCapacity = card.querySelector('.popup__text--capacity');
-  cardCapacity.textContent = data.offer.rooms + ' комнаты для ' + data.offer.guests + ' гостей';
+  cardCapacity.textContent = `${data.offer.rooms} комнаты для ${data.offer.guests} гостей`;
 
   const cardTime = card.querySelector('.popup__text--time');
-  cardTime.textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
+  cardTime.textContent = `Заезд после ${data.offer.checkin}, выезд до ${data.offer.checkout}`;
 
   const featureContainer = card.querySelector('.popup__features');
   featureContainer.innerHTML = '';
@@ -69,7 +62,7 @@ const makeCard = function (data) {
   } else {
     for (let i = 0; i < data.offer.features.length; i++) {
       const element = document.createElement('li');
-      element.classList.add('popup__feature', 'popup__feature--' + data.offer.features[i]);
+      element.classList.add('popup__feature', `popup__feature--${  data.offer.features[i]}`);
       featureContainer.appendChild(element);
     }
   }
@@ -102,9 +95,4 @@ const makeCard = function (data) {
   return card;
 };
 
-const insertElement = function (element, section) {
-  const srcNode = document.querySelector(section);
-  srcNode.appendChild(element);
-};
-
-export { makeCard, offers, insertElement };
+export {makeCard};

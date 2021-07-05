@@ -1,6 +1,19 @@
-const nextButton = document.querySelector('#next');
+import { formSwitch } from './form.js';
+import { offers } from './data.js';
+import { makeCard } from './generation.js';
+
+const addressField = document.querySelector('#address');
+const defaultCoord = {
+  lat: 35.735118,
+  lng: 139.774821,
+};
 
 const mapCanvas = L.map('map-canvas')
+  .on('load', () => {
+    formSwitch(false);
+    addressField.value = `${defaultCoord.lat.toFixed(5)} , ${defaultCoord.lng.toFixed(5)}`;
+    addressField.readOnly = true;
+  })
   .setView({
     lat: 35.735118,
     lng: 139.774821,
@@ -13,70 +26,64 @@ L.tileLayer(
   },
 ).addTo(mapCanvas);
 
-const points = [
-  {
-    title: 'カラハーイ hotel',
-    lat: 35.735118,
-    lng: 139.774821,
-  },
-  {
-    title: 'Asian Kitchen',
-    lat: 35.676194,
-    lng: 139.650311,
-  },
-];
+const createMainMarker = () => {
 
-const createCustomPopup = (point) => {
-  const balloonTemplate = document.querySelector('#balloon').content.querySelector('.balloon');
-  const popupElement = balloonTemplate.cloneNode(true);
-
-  popupElement.querySelector('.balloon__title').textContent = point.title;
-  popupElement.querySelector('.balloon__lat-lng').textContent = `Координаты: ${point.lat}, ${point.lng}`;
-
-  return popupElement;
-};
-
-const markerGroup = L.layerGroup().addTo(mapCanvas);
-
-const createMarker = (point) => {
-  const {lat, lng} = point;
-
-  const icon = L.icon({
-    iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+  const iconMain = L.icon({
+    iconUrl: './img/main-pin.svg',
+    iconSize: [52, 52],
+    iconAnchor: [26, 52],
   });
 
   const marker = L.marker(
     {
-      lat,
-      lng,
+      lat: defaultCoord.lat, lng: defaultCoord.lng,
     },
     {
-      icon,
+      icon: iconMain,
+      draggable: true,
     },
   );
 
   marker
-    .addTo(markerGroup)
-    .bindPopup(
-      createCustomPopup(point),
-      {
-        keepInView: true,
-      },
+    .addTo(mapCanvas);
+
+  marker.on('moveend', (evt) => {
+    const addressLatLng = evt.target.getLatLng();
+    addressField.value = `${addressLatLng.lat.toFixed(5)} , ${addressLatLng.lng.toFixed(5)}`;
+  });
+
+
+};
+createMainMarker(defaultCoord);
+
+const pin = L.layerGroup().addTo(mapCanvas);
+
+const createPins = (point) => {
+  point.forEach(({ location, offer, author }) => {
+    const iconPin = L.icon({
+      iconUrl: './img/pin.svg',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+    });
+
+    const marker = L.marker({
+      lat: location.lat,
+      lng: location.lng,
+    },
+    {
+      icon: iconPin,
+    },
     );
+
+    marker
+      .addTo(pin)
+      .bindPopup(
+        makeCard({ location, offer, author }),
+        {
+          keepInView: true,
+        },
+      );
+  });
 };
 
-points.slice(0, points.length / 2).forEach((point) => {
-  createMarker(point);
-});
-
-
-nextButton.addEventListener('click', () => {
-  markerGroup.clearLayers();
-
-  points.slice(points.length / 2).forEach((point) => {
-    createMarker(point);
-  });
-  nextButton.remove();
-});
+createPins(offers);

@@ -46,8 +46,6 @@ const onTypeChange = () => {
 typeHouseSelect.addEventListener('change', onTypeChange);
 
 const formSwitch = (toggle) => {
-  const classFormDis = formDataFilter.classList.contains('ad-form--disabled');
-  const classFormMapDis = formDataFilter.classList.contains('map__filters--disabled');
 
   for (let i = 0; i < formFieldset.length; i++) {
     formFieldset[i].disabled = toggle;

@@ -79,6 +79,7 @@ const makeLocation = () => {
 };
 
 const makeFullOffer = () => {
+  // eslint-disable-next-line no-shadow
   const offers = [];
 
   // eslint-disable-next-line id-length
@@ -94,8 +95,6 @@ const makeFullOffer = () => {
   return offers;
 };
 
-makeFullOffer();
+const offers = makeFullOffer();
 
-export {makeAuthor, makeOffer, makeLocation, makeFullOffer};
-
-// https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg
+export {makeAuthor, makeOffer, makeLocation, offers};
