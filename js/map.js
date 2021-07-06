@@ -2,6 +2,26 @@ import { formSwitch } from './form.js';
 import { offers } from './data.js';
 import { makeCard } from './generation.js';
 
+const xIconMainSizeMarker = 52;
+const yIconMainSizeMarker = 52;
+const xIconMainAnchorMarker = 52;
+const yIconMainAnchorMarker = 52;
+
+const iconMainSizeMarker = {
+  iconSize: [xIconMainSizeMarker, yIconMainSizeMarker],
+  iconAnchor: [xIconMainAnchorMarker, yIconMainAnchorMarker],
+};
+
+const xIconPinSizeMarker = 40;
+const yIconPinSizeMarker = 40;
+const xIconPinAnchorMarker = 20;
+const yIconPinAnchorMarker = 40;
+
+const iconPinSizeMarker = {
+  iconSize: [xIconPinSizeMarker, yIconPinSizeMarker],
+  iconAnchor: [xIconPinAnchorMarker, yIconPinAnchorMarker],
+};
+
 const addressField = document.querySelector('#address');
 const defaultCoord = {
   lat: 35.735118,
@@ -15,8 +35,8 @@ const mapCanvas = L.map('map-canvas')
     addressField.readOnly = true;
   })
   .setView({
-    lat: 35.735118,
-    lng: 139.774821,
+    lat: defaultCoord.lat,
+    lng: defaultCoord.lng,
   }, 13);
 
 L.tileLayer(
@@ -27,11 +47,10 @@ L.tileLayer(
 ).addTo(mapCanvas);
 
 const createMainMarker = () => {
-
   const iconMain = L.icon({
     iconUrl: './img/main-pin.svg',
-    iconSize: [52, 52],
-    iconAnchor: [26, 52],
+    iconSize: iconMainSizeMarker.iconSize,
+    iconAnchor: iconMainSizeMarker.iconAnchor,
   });
 
   const marker = L.marker(
@@ -62,8 +81,8 @@ const createPins = (point) => {
   point.forEach(({ location, offer, author }) => {
     const iconPin = L.icon({
       iconUrl: './img/pin.svg',
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
+      iconSize: iconPinSizeMarker.iconSize,
+      iconAnchor: iconPinSizeMarker.iconAnchor,
     });
 
     const marker = L.marker({
