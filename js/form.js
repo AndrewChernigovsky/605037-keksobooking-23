@@ -6,10 +6,13 @@ const formMapOption = document.querySelectorAll('.map__filter');
 const formTimeIn = document.querySelector('#timein');
 const formTimeOut = document.querySelector('#timeout');
 
-const formTimeInChange = formTimeOut.onchage = function () {
-  formTimeOut.value = formTimeIn.value;};
-const formTimeOutChange = formTimeIn.onchage = function () {
-  formTimeIn.value = formTimeOut.value;};
+formTimeOut.addEventListener('change', ()=>{
+  formTimeIn.value=formTimeOut.value;
+});
+
+formTimeIn.addEventListener('change', ()=>{
+  formTimeOut.value=formTimeIn.value;
+});
 
 const room = document.querySelector('#room_number');
 const guest = document.querySelector('#capacity');
@@ -72,9 +75,5 @@ const formSwitch = (toggle) => {
     formFieldsetHeader.disabled = false;
   }
 };
-
-formTimeIn.addEventListener('change', formTimeInChange);
-
-formTimeOut.addEventListener('change', formTimeOutChange);
 
 export { formSwitch };
