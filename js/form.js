@@ -34,17 +34,28 @@ const guestRoom = {
   100: [3],
 };
 
-const questRoomChange = function (){
-  room.addEventListener('change', () => {
-    for (let i = 0; i < guest.options.length; i++) {
-      guest.options[i].disabled = true;
-    }
-    for (let i = 0; i < guestRoom[room.value].length; i++) {
-      guest.options[guestRoom[room.value][i]].disabled = false;
-    }
-    guest.selectedIndex = guestRoom[room.value][0];
-  });
+const questRoomChange = () => {
+  for (let i = 0; i < guest.options.length; i++) {
+    guest.options[i].disabled = true;
+  }
+  for (let i = 0; i < guestRoom[room.value].length; i++) {
+    guest.options[guestRoom[room.value][i]].disabled = false;
+  }
+  guest.selectedIndex = guestRoom[room.value][0];
 };
+
+room.addEventListener('change', questRoomChange);
+
+// room.addEventListener('change', () => {
+//   for (let i = 0; i < guest.options.length; i++) {
+//     guest.options[i].disabled = true;
+//   }
+//   for (let i = 0; i < guestRoom[room.value].length; i++) {
+//     guest.options[guestRoom[room.value][i]].disabled = false;
+//   }
+//   guest.selectedIndex = guestRoom[room.value][0];
+// });
+
 
 const onTypeChange = () => {
   housePrice.placeholder = minPrice[typeHouseSelect.value];
