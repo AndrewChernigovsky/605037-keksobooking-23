@@ -3,6 +3,21 @@ const formFieldsetHeader = document.querySelector('.ad-form-header');
 const formFieldset = document.querySelectorAll('.ad-form__element');
 const formMap = document.querySelector('.map__filters');
 const formMapOption = document.querySelectorAll('.map__filter');
+const formTimeIn = document.querySelector('#timein');
+const formTimeOut = document.querySelector('#timeout');
+
+formTimeOut.addEventListener('change', ()=>{
+  formTimeIn.value=formTimeOut.value;
+});
+
+formTimeIn.addEventListener('change', ()=>{
+  formTimeOut.value=formTimeIn.value;
+});
+
+const room = document.querySelector('#room_number');
+const guest = document.querySelector('#capacity');
+const typeHouseSelect = document.querySelector('#type');
+const housePrice = document.querySelector('#price');
 
 const minPrice = {
   flat: 1000,
@@ -19,24 +34,17 @@ const guestRoom = {
   100: [3],
 };
 
-const room = document.querySelector('#room_number');
-const guest = document.querySelector('#capacity');
-
-room.addEventListener('change', () => {
-
+const onRoomChange = () => {
   for (let i = 0; i < guest.options.length; i++) {
     guest.options[i].disabled = true;
   }
-
   for (let i = 0; i < guestRoom[room.value].length; i++) {
     guest.options[guestRoom[room.value][i]].disabled = false;
   }
+  guest.selectedIndex = guestRoom[room.value][0];
+};
 
-});
-
-const typeHouseSelect = document.querySelector('#type');
-const housePrice = document.querySelector('#price');
-
+room.addEventListener('change', onRoomChange);
 
 const onTypeChange = () => {
   housePrice.placeholder = minPrice[typeHouseSelect.value];
@@ -46,8 +54,6 @@ const onTypeChange = () => {
 typeHouseSelect.addEventListener('change', onTypeChange);
 
 const formSwitch = (toggle) => {
-  const classFormDis = formDataFilter.classList.contains('ad-form--disabled');
-  const classFormMapDis = formDataFilter.classList.contains('map__filters--disabled');
 
   for (let i = 0; i < formFieldset.length; i++) {
     formFieldset[i].disabled = toggle;
@@ -68,15 +74,4 @@ const formSwitch = (toggle) => {
   }
 };
 
-const formTimeIn = document.querySelector('#timein');
-const formTimeOut = document.querySelector('#timeout');
-
-formTimeIn.addEventListener('change', formTimeOut.onchage = function () {
-  formTimeOut.value = formTimeIn.value;
-});
-
-formTimeOut.addEventListener('change', formTimeIn.onchage = function () {
-  formTimeIn.value = formTimeOut.value;
-});
-
-export { formSwitch };
+export {formSwitch, onRoomChange};
