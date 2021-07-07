@@ -1,4 +1,4 @@
-import { formSwitch, questRoomChange} from './form.js';
+import { formSwitch, onRoomChange} from './form.js';
 import { offers } from './data.js';
 import { makeCard } from './generation.js';
 
@@ -33,7 +33,7 @@ const mapCanvas = L.map('map-canvas')
     formSwitch(false);
     addressField.value = `${defaultCoord.lat.toFixed(5)} , ${defaultCoord.lng.toFixed(5)}`;
     addressField.readOnly = true;
-    questRoomChange();
+    onRoomChange();
   })
   .setView({
     lat: defaultCoord.lat,
