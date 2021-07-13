@@ -1,4 +1,6 @@
-const formDataFilter = document.querySelector('.ad-form');
+import { sendData } from './server.js';
+
+const formData = document.querySelector('.ad-form');
 const formFieldsetHeader = document.querySelector('.ad-form-header');
 const formFieldset = document.querySelectorAll('.ad-form__element');
 const formMap = document.querySelector('.map__filters');
@@ -64,14 +66,22 @@ const formSwitch = (toggle) => {
   }
 
   if (toggle === true) {
-    formDataFilter.classList.add('ad-form--disabled');
+    formData.classList.add('ad-form--disabled');
     formMap.classList.add('map__filters--disabled');
     formFieldsetHeader.disabled = true;
   } else {
-    formDataFilter.classList.remove('ad-form--disabled');
+    formData.classList.remove('ad-form--disabled');
     formMap.classList.remove('map__filters--disabled');
     formFieldsetHeader.disabled = false;
   }
 };
+
+formData.addEventListener('submit', (evt) => {
+  const formDataTemplate = new FormData (evt.target);
+  evt.preventDefault();
+
+  sendData(1, 1, formDataTemplate);
+  }
+);
 
 export {formSwitch, onRoomChange};

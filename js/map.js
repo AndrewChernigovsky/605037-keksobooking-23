@@ -1,5 +1,6 @@
 import { formSwitch, onRoomChange} from './form.js';
-import { offers } from './data.js';
+import { offers } from './server.js';
+// import { showMessageError,  setUserFormSubmit  } from './server.js';
 import { makeCard } from './generation.js';
 
 const xIconMainSizeMarker = 52;
@@ -24,8 +25,8 @@ const iconPinSizeMarker = {
 
 const addressField = document.querySelector('#address');
 const defaultCoord = {
-  lat: 35.735118,
-  lng: 139.774821,
+  lat: 35.6895,
+  lng: 139.692,
 };
 
 const mapCanvas = L.map('map-canvas')
@@ -38,7 +39,7 @@ const mapCanvas = L.map('map-canvas')
   .setView({
     lat: defaultCoord.lat,
     lng: defaultCoord.lng,
-  }, 13);
+  }, 10);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -79,6 +80,9 @@ createMainMarker(defaultCoord);
 const pin = L.layerGroup().addTo(mapCanvas);
 
 const createPins = (point) => {
+  if (point.length > 10) {
+    point.length = 10;
+  }
   point.forEach(({ location, offer, author }) => {
     const iconPin = L.icon({
       iconUrl: './img/pin.svg',
@@ -106,4 +110,7 @@ const createPins = (point) => {
   });
 };
 
-createPins(offers);
+// showMessageError();
+// setUserFormSubmit ();
+
+export {createPins};
