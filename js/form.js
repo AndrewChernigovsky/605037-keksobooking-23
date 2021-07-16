@@ -81,7 +81,7 @@ formData.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   sendData(1, 1, formDataTemplate);
-  }
+},
 );
 
 export {formSwitch, onRoomChange};

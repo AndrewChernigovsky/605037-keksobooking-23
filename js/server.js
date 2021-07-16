@@ -1,5 +1,5 @@
 import {createPins} from './map.js';
-import {successMessage, errorMessage} from './ShowMessageError.js';
+import {successMessage, errorMessage, resetFormData} from './ShowMessageError.js';
 
 let offers;
 const getUrl = 'https://23.javascript.pages.academy/keksobooking/data';
@@ -21,11 +21,6 @@ const getData = (onSuccess) => {
 };
 
 const sendUrl = 'https://23.javascript.pages.academy/keksobooking';
-// const onSendData = (ads) => {
-//     createPins(ads);
-//     offers = ads;
-//     console.log(offers);
-// }
 
 const sendData = (onSuccessSend, onFail, formData) => {
     fetch(sendUrl,
@@ -37,7 +32,9 @@ const sendData = (onSuccessSend, onFail, formData) => {
         .then((response) =>
         {
           if (response.ok) {
+            // successMessage('onSuccessSend');
             successMessage('onSuccessSend');
+            resetFormData();
         } else {
             errorMessage('error');
         }
@@ -46,8 +43,5 @@ const sendData = (onSuccessSend, onFail, formData) => {
 }
 
 getData(onSuccess);
-// sendData(sendUrl, onSuccess);
-
-// console.log(offers);
 
 export {offers, sendData};

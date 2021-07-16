@@ -1,6 +1,5 @@
 import { formSwitch, onRoomChange} from './form.js';
 import { offers } from './server.js';
-// import { showMessageError,  setUserFormSubmit  } from './server.js';
 import { makeCard } from './generation.js';
 
 const xIconMainSizeMarker = 52;
@@ -48,22 +47,23 @@ L.tileLayer(
   },
 ).addTo(mapCanvas);
 
-const createMainMarker = () => {
-  const iconMain = L.icon({
-    iconUrl: './img/main-pin.svg',
-    iconSize: iconMainSizeMarker.iconSize,
-    iconAnchor: iconMainSizeMarker.iconAnchor,
-  });
+const iconMain = L.icon({
+  iconUrl: './img/main-pin.svg',
+  iconSize: iconMainSizeMarker.iconSize,
+  iconAnchor: iconMainSizeMarker.iconAnchor,
+});
 
-  const marker = L.marker(
-    {
-      lat: defaultCoord.lat, lng: defaultCoord.lng,
-    },
-    {
-      icon: iconMain,
-      draggable: true,
-    },
-  );
+const marker = L.marker(
+  {
+    lat: defaultCoord.lat, lng: defaultCoord.lng,
+  },
+  {
+    icon: iconMain,
+    draggable: true,
+  },
+);
+
+const createMainMarker = () => {
 
   marker
     .addTo(mapCanvas);
@@ -72,9 +72,8 @@ const createMainMarker = () => {
     const addressLatLng = evt.target.getLatLng();
     addressField.value = `${addressLatLng.lat.toFixed(5)} , ${addressLatLng.lng.toFixed(5)}`;
   });
-
-
 };
+
 createMainMarker(defaultCoord);
 
 const pin = L.layerGroup().addTo(mapCanvas);
@@ -110,7 +109,4 @@ const createPins = (point) => {
   });
 };
 
-// showMessageError();
-// setUserFormSubmit ();
-
-export {createPins};
+export {createPins, marker, defaultCoord};
