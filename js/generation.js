@@ -1,4 +1,5 @@
 const makeCard = function (data) {
+  console.log(data);
   let type;
   const cardTemplate = document.querySelector('#card').content;
   const card = cardTemplate.cloneNode(true);
@@ -57,7 +58,7 @@ const makeCard = function (data) {
   const featureContainer = card.querySelector('.popup__features');
   featureContainer.innerHTML = '';
 
-  if (data.offer.features.length === 0) {
+  if (!data.offer.features) {
     featureContainer.remove();
   } else {
     for (let i = 0; i < data.offer.features.length; i++) {
@@ -69,7 +70,7 @@ const makeCard = function (data) {
 
   const cardDescription = card.querySelector('.popup__description');
 
-  if (data.offer.description.length === 0) {
+  if (!data.offer.description) {
     cardDescription.remove();
   } else {
     cardDescription.textContent = data.offer.description;
@@ -78,8 +79,8 @@ const makeCard = function (data) {
   const photosContainer = card.querySelector('.popup__photos');
   photosContainer.innerHTML = '';
 
-  if (data.offer.photos.length === 0) {
-    photosContainer.delete();
+  if (typeof data.offer.photos === 'undefined') {
+    photosContainer.remove();
   } else {
     for (let i = 0; i < data.offer.photos.length; i++) {
       const element = document.createElement('img');

@@ -1,6 +1,8 @@
-import { formSwitch, onRoomChange} from './form.js';
-import { offers } from './data.js';
+import { formSwitch, onRoomChange, housePrice} from './form.js';
+import { offers } from './server.js';
 import { makeCard } from './generation.js';
+
+const MIN_PRICE = 1000;
 
 const xIconMainSizeMarker = 52;
 const yIconMainSizeMarker = 52;
@@ -24,21 +26,25 @@ const iconPinSizeMarker = {
 
 const addressField = document.querySelector('#address');
 const defaultCoord = {
-  lat: 35.735118,
-  lng: 139.774821,
+  lat: 35.6895,
+  lng: 139.692,
 };
 
 const mapCanvas = L.map('map-canvas')
   .on('load', () => {
     formSwitch(false);
+    housePrice.placeholder = MIN_PRICE ;
+    housePrice.min = MIN_PRICE;
+
     addressField.value = `${defaultCoord.lat.toFixed(5)} , ${defaultCoord.lng.toFixed(5)}`;
     addressField.readOnly = true;
+
     onRoomChange();
   })
   .setView({
     lat: defaultCoord.lat,
     lng: defaultCoord.lng,
-  }, 13);
+  }, 10);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -47,22 +53,23 @@ L.tileLayer(
   },
 ).addTo(mapCanvas);
 
-const createMainMarker = () => {
-  const iconMain = L.icon({
-    iconUrl: './img/main-pin.svg',
-    iconSize: iconMainSizeMarker.iconSize,
-    iconAnchor: iconMainSizeMarker.iconAnchor,
-  });
+const iconMain = L.icon({
+  iconUrl: './img/main-pin.svg',
+  iconSize: iconMainSizeMarker.iconSize,
+  iconAnchor: iconMainSizeMarker.iconAnchor,
+});
 
-  const marker = L.marker(
-    {
-      lat: defaultCoord.lat, lng: defaultCoord.lng,
-    },
-    {
-      icon: iconMain,
-      draggable: true,
-    },
-  );
+const marker = L.marker(
+  {
+    lat: defaultCoord.lat, lng: defaultCoord.lng,
+  },
+  {
+    icon: iconMain,
+    draggable: true,
+  },
+);
+
+const createMainMarker = () => {
 
   marker
     .addTo(mapCanvas);
@@ -71,14 +78,16 @@ const createMainMarker = () => {
     const addressLatLng = evt.target.getLatLng();
     addressField.value = `${addressLatLng.lat.toFixed(5)} , ${addressLatLng.lng.toFixed(5)}`;
   });
-
-
 };
+
 createMainMarker(defaultCoord);
 
 const pin = L.layerGroup().addTo(mapCanvas);
 
 const createPins = (point) => {
+  if (point.length > 10) {
+    point.length = 10;
+  }
   point.forEach(({ location, offer, author }) => {
     const iconPin = L.icon({
       iconUrl: './img/pin.svg',
@@ -106,4 +115,4 @@ const createPins = (point) => {
   });
 };
 
-createPins(offers);
+export {createPins, marker, defaultCoord, mapCanvas};
