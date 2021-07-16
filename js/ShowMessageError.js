@@ -1,4 +1,4 @@
-import {marker, defaultCoord} from './map.js';
+import {marker, defaultCoord, mapCanvas} from './map.js';
 
 const bodyMain = document.querySelector('body');
 
@@ -78,8 +78,8 @@ const resetFormData = () => {
     selectRooms.value = '1'; 
     selectCapacity.value = '1'; 
     inputAddress.value = `${defaultCoord.lat.toFixed(5)} , ${defaultCoord.lng.toFixed(5)}`;
-    marker.setLatLng(defaultCoord);
-    marker.removeLayer(marker);
+    mapCanvas.closePopup();
+    ;
 };
 
 const button = document.querySelector('.ad-form__reset');

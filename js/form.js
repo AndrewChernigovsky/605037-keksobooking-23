@@ -84,4 +84,4 @@ formData.addEventListener('submit', (evt) => {
 },
 );
 
-export {formSwitch, onRoomChange};
+export {formSwitch, onRoomChange, housePrice};

@@ -1,6 +1,8 @@
-import { formSwitch, onRoomChange} from './form.js';
+import { formSwitch, onRoomChange, housePrice} from './form.js';
 import { offers } from './server.js';
 import { makeCard } from './generation.js';
+
+const MIN_PRICE = 1000;
 
 const xIconMainSizeMarker = 52;
 const yIconMainSizeMarker = 52;
@@ -31,8 +33,12 @@ const defaultCoord = {
 const mapCanvas = L.map('map-canvas')
   .on('load', () => {
     formSwitch(false);
+    housePrice.placeholder = MIN_PRICE ;
+    housePrice.min = MIN_PRICE;
+
     addressField.value = `${defaultCoord.lat.toFixed(5)} , ${defaultCoord.lng.toFixed(5)}`;
     addressField.readOnly = true;
+
     onRoomChange();
   })
   .setView({
@@ -109,4 +115,4 @@ const createPins = (point) => {
   });
 };
 
-export {createPins, marker, defaultCoord};
+export {createPins, marker, defaultCoord, mapCanvas};
