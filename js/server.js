@@ -1,12 +1,14 @@
 import {createPins} from './map.js';
 import {successMessage, errorMessage, resetFormData} from './ShowMessageError.js';
+import {formFilterSwitch} from './form.js';
+
 
 let offers;
 const getUrl = 'https://23.javascript.pages.academy/keksobooking/data';
 const onSuccess = (ads) => {
     createPins(ads);
     offers = ads;
-    console.log(offers);
+    formFilterSwitch(false);
 };
 
 const getData = (onSuccess) => {

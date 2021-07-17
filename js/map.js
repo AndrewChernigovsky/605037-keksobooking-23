@@ -1,4 +1,4 @@
-import { formSwitch, onRoomChange, housePrice} from './form.js';
+import { formAdSwitch, onRoomChange, housePrice} from './form.js';
 import { offers } from './server.js';
 import { makeCard } from './generation.js';
 
@@ -32,7 +32,7 @@ const defaultCoord = {
 
 const mapCanvas = L.map('map-canvas')
   .on('load', () => {
-    formSwitch(false);
+    formAdSwitch(false);
     housePrice.placeholder = MIN_PRICE ;
     housePrice.min = MIN_PRICE;
 
@@ -52,6 +52,10 @@ L.tileLayer(
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>',
   },
 ).addTo(mapCanvas);
+
+if (!mapCanvas) {
+  formSwitch(true);
+}
 
 const iconMain = L.icon({
   iconUrl: './img/main-pin.svg',
