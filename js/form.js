@@ -8,12 +8,12 @@ const formMapOption = document.querySelectorAll('.map__filter');
 const formTimeIn = document.querySelector('#timein');
 const formTimeOut = document.querySelector('#timeout');
 
-formTimeOut.addEventListener('change', ()=>{
-  formTimeIn.value=formTimeOut.value;
+formTimeOut.addEventListener('change', () => {
+  formTimeIn.value = formTimeOut.value;
 });
 
-formTimeIn.addEventListener('change', ()=>{
-  formTimeOut.value=formTimeIn.value;
+formTimeIn.addEventListener('change', () => {
+  formTimeOut.value = formTimeIn.value;
 });
 
 const room = document.querySelector('#room_number');
@@ -55,10 +55,10 @@ const onTypeChange = () => {
 
 typeHouseSelect.addEventListener('change', onTypeChange);
 
-const formAdSwitch  = (toggle) => {
+const formAdSwitch = (toggle) => {
   for (let i = 0; i < formFieldset.length; i++) {
-        formFieldset[i].disabled = toggle;
-      }
+    formFieldset[i].disabled = toggle;
+  }
 
   if (toggle === true) {
     formData.classList.add('ad-form--disabled');
@@ -67,29 +67,27 @@ const formAdSwitch  = (toggle) => {
     formData.classList.remove('ad-form--disabled');
     formFieldsetHeader.disabled = false;
   }
-
 };
 
-const formFilterSwitch  = (toggle) => {
+const formFilterSwitch = (toggle) => {
   for (let i = 0; i < formMapOption.length; i++) {
-        formMapOption[i].disabled = toggle;
-      }
-    
-      if (toggle === true) {
-        formMap.classList.add('map__filters--disabled');
-        formFieldsetHeader.disabled = true;
-      } else {
-        formMap.classList.remove('map__filters--disabled');
-        formFieldsetHeader.disabled = false;
-      }
+    formMapOption[i].disabled = toggle;
+  }
+
+  if (toggle === true) {
+    formMap.classList.add('map__filters--disabled');
+    formFieldsetHeader.disabled = true;
+  } else {
+    formMap.classList.remove('map__filters--disabled');
+    formFieldsetHeader.disabled = false;
+  }
 };
 
 formData.addEventListener('submit', (evt) => {
-  const formDataTemplate = new FormData (evt.target);
+  const formDataTemplate = new FormData(evt.target);
   evt.preventDefault();
 
   sendData(1, 1, formDataTemplate);
-},
-);
+});
 
-export {formAdSwitch, formFilterSwitch, onRoomChange, housePrice, formMap};
+export { formAdSwitch, formFilterSwitch, onRoomChange, housePrice, formMap, formMapOption};

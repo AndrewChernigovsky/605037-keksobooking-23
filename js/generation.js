@@ -1,5 +1,4 @@
 const makeCard = function (data) {
-  console.log(data);
   let type;
   const cardTemplate = document.querySelector('#card').content;
   const card = cardTemplate.cloneNode(true);
