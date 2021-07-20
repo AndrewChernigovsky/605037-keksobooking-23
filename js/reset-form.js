@@ -86,7 +86,7 @@ const showAlertError = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = Z_INDEX_ERROR_MESSAGE;
   alertContainer.style.position = 'fixed';
-  alertContainer.style.left = 1;
+  alertContainer.style.left = 0;
   alertContainer.style.top = '30%';
   alertContainer.style.right = 0;
   alertContainer.style.padding = '10px 3px';
