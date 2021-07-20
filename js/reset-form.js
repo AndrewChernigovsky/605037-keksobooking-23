@@ -15,14 +15,14 @@ const successMessage = function (message) {
     document.querySelector('.success').remove();
   });
 
-  function successClose(evt) {
+  function onSuccessClose(evt) {
     if (evt.keyCode === KEY_ESCAPE) {
       document.querySelector('.success').remove();
-      window.removeEventListener('keydown', successClose);
+      window.removeEventListener('keydown', onSuccessClose);
     }
   }
 
-  window.addEventListener('keydown', successClose);
+  window.addEventListener('keydown', onSuccessClose);
 };
 // eslint-disable-next-line no-unused-vars
 const errorMessage = (typeMessage) => {

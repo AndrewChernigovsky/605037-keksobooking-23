@@ -32,7 +32,7 @@ const getData = (onSuccess) => {
 
 const sendUrl = 'https://23.javascript.pages.academy/keksobooking';
 
-const sendData = (onSuccessSend, onFail, formData) => {
+const sendData = (formData) => {
   fetch(sendUrl, {
     method: 'POST',
     body: formData,
