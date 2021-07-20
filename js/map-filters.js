@@ -8,6 +8,9 @@ const selectPrice = document.querySelector('#housing-price');
 const selectRooms = document.querySelector('#housing-rooms');
 const selectGuests = document.querySelector('#housing-guests');
 const DEBOUNCE_TIME = 500;
+const LOW_PRICE = 10000;
+const HIGH_PRICE = 50000;
+const MIN_ARRAY_LENGTH = 10;
 
 const getFilterFeatures = (dat) => {
   const inputFeatures = formMap.querySelectorAll(
@@ -43,13 +46,16 @@ const makeFilters = (data) => {
     arrayType = arrayType.filter((dat) => {
       switch (selectPrice.value) {
         case 'low':
-          return dat.offer.price < 10000;
+          return dat.offer.price < LOW_PRICE;
+          // eslint-disable-next-line no-unreachable
           break;
         case 'middle':
-          return dat.offer.price >= 10000 && dat.offer.price < 50000;
+          return dat.offer.price >= LOW_PRICE && dat.offer.price < HIGH_PRICE;
+          // eslint-disable-next-line no-unreachable
           break;
         case 'high':
-          return dat.offer.price >= 50000;
+          return dat.offer.price >= HIGH_PRICE;
+          // eslint-disable-next-line no-unreachable
           break;
         default:
           break;
@@ -67,8 +73,8 @@ const makeFilters = (data) => {
 
   arrayType = getFilterFeatures(arrayType);
 
-  if (arrayType.length > 10) {
-    arrayType = arrayType.slice(0, 10);
+  if (arrayType.length > MIN_ARRAY_LENGTH ) {
+    arrayType = arrayType.slice(0, MIN_ARRAY_LENGTH);
   }
   return arrayType;
 };

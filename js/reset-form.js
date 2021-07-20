@@ -1,11 +1,12 @@
 import { marker, defaultCoord, mapCanvas, pin, createPins} from './map.js';
-import {makeFilters} from './map__filters.js';
+import {makeFilters} from './map-filters.js';
 import {offers} from './server.js';
 
 const bodyMain = document.querySelector('body');
-const errorTemplate = document.querySelector('#error').content;
 const SHOW_ERROR_TIME = 5000;
-
+const KEY_ESCAPE = 27;
+const Z_INDEX_ERROR_MESSAGE = 1000;
+// eslint-disable-next-line no-unused-vars
 const successMessage = function (message) {
   const template = document.querySelector('#success').content.cloneNode(true);
   bodyMain.appendChild(template);
@@ -15,7 +16,7 @@ const successMessage = function (message) {
   });
 
   function successClose(evt) {
-    if (evt.keyCode === 27) {
+    if (evt.keyCode === KEY_ESCAPE) {
       document.querySelector('.success').remove();
       window.removeEventListener('keydown', successClose);
     }
@@ -23,7 +24,7 @@ const successMessage = function (message) {
 
   window.addEventListener('keydown', successClose);
 };
-
+// eslint-disable-next-line no-unused-vars
 const errorMessage = (typeMessage) => {
   const templateModal = document
     .querySelector('#error')
@@ -43,17 +44,6 @@ const errorMessage = (typeMessage) => {
   });
   document.addEventListener('keydown', onModalEscKeydown);
   bodyMain.appendChild(modalElement);
-};
-
-const closeMessage = function (e) {
-  if (template) {
-    document.addEventListener(e.keyCode === 27);
-    template.delete();
-  }
-};
-
-const closeMessageClick = function () {
-  document.addEventListener('onclick');
 };
 
 const resetFormData = () => {
@@ -94,7 +84,7 @@ button.addEventListener('click', (evt) => {
 
 const showAlertError = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 1000;
+  alertContainer.style.zIndex = Z_INDEX_ERROR_MESSAGE;
   alertContainer.style.position = 'fixed';
   alertContainer.style.left = 0;
   alertContainer.style.top = '30%';
