@@ -87,7 +87,7 @@ formData.addEventListener('submit', (evt) => {
   const formDataTemplate = new FormData(evt.target);
   evt.preventDefault();
 
-  sendData(1, 1, formDataTemplate);
+  sendData(formDataTemplate);
 });
 
 export { formAdSwitch, formFilterSwitch, onRoomChange, housePrice, formMap, formMapOption};
