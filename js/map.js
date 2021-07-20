@@ -3,24 +3,24 @@ import { makeCard } from './generation.js';
 
 const MIN_PRICE = 1000;
 
-const xIconMainSizeMarker = 52;
-const yIconMainSizeMarker = 52;
-const xIconMainAnchorMarker = 52;
-const yIconMainAnchorMarker = 52;
+const X_ICON_MAINSIZE_MARKER = 52;
+const Y_ICON_MAINSIZE_MARKER = 52;
+const X_ICON_MAINANCHOR_MARKER = 52;
+const Y_ICON_MAINANCHOR_MARKER = 52;
 
 const iconMainSizeMarker = {
-  iconSize: [xIconMainSizeMarker, yIconMainSizeMarker],
-  iconAnchor: [xIconMainAnchorMarker, yIconMainAnchorMarker],
+  iconsSize: [X_ICON_MAINSIZE_MARKER, Y_ICON_MAINSIZE_MARKER],
+  iconsAnchor: [X_ICON_MAINANCHOR_MARKER, Y_ICON_MAINANCHOR_MARKER],
 };
 
-const xIconPinSizeMarker = 40;
-const yIconPinSizeMarker = 40;
-const xIconPinAnchorMarker = 20;
-const yIconPinAnchorMarker = 40;
+const X_ICON_PINSIZE_MARKER = 40;
+const Y_ICON_PINSIZE_MARKER = 40;
+const X_ICON_PINANCHOR_MARKER = 20;
+const Y_ICON_PINANCHOR_MARKER = 40;
 
 const iconPinSizeMarker = {
-  iconSize: [xIconPinSizeMarker, yIconPinSizeMarker],
-  iconAnchor: [xIconPinAnchorMarker, yIconPinAnchorMarker],
+  iconsSize: [X_ICON_PINSIZE_MARKER, Y_ICON_PINSIZE_MARKER],
+  iconsAnchor: [X_ICON_PINANCHOR_MARKER, Y_ICON_PINANCHOR_MARKER],
 };
 
 const addressField = document.querySelector('#address');
@@ -54,8 +54,8 @@ L.tileLayer(
 
 const iconMain = L.icon({
   iconUrl: './img/main-pin.svg',
-  iconSize: iconMainSizeMarker.iconSize,
-  iconAnchor: iconMainSizeMarker.iconAnchor,
+  iconSize: iconMainSizeMarker.iconsSize,
+  iconAnchor: iconMainSizeMarker.iconsAnchor,
 });
 
 const marker = L.marker(
@@ -81,21 +81,17 @@ const createMainMarker = () => {
 
 createMainMarker(defaultCoord);
 
-let pin =  L.layerGroup().addTo(mapCanvas);
+const pin =  L.layerGroup().addTo(mapCanvas);
 
-const createPins = (point) => {  
-  // if (point.length > 10) {
-  //   point.length = 10;
-  // }
-  console.log(point);
+const createPins = (point) => {
   point.forEach(({ location, offer, author }) => {
     const iconPin = L.icon({
       iconUrl: './img/pin.svg',
-      iconSize: iconPinSizeMarker.iconSize,
-      iconAnchor: iconPinSizeMarker.iconAnchor,
+      iconSize: iconPinSizeMarker.iconsSize,
+      iconAnchor: iconPinSizeMarker.iconsAnchor,
     });
 
-    const marker = L.marker({
+    const markerPin = L.marker({
       lat: location.lat,
       lng: location.lng,
     },
@@ -104,7 +100,7 @@ const createPins = (point) => {
     },
     );
 
-    marker
+    markerPin
       .addTo(pin)
       .bindPopup(
         makeCard({ location, offer, author }),
