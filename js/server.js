@@ -16,15 +16,13 @@ const onSuccess = (ads) => {
   formFilterSwitch(false);
 };
 
-// eslint-disable-next-line no-shadow
-const getData = (onSuccess) => {
+const getData = () => {
   fetch(getUrl)
     .then((response) => response.json())
     .then((ads) => {
       onSuccess(ads);
     })
-    // eslint-disable-next-line no-unused-vars
-    .catch((error) => {
+    .catch(() => {
       showAlertError('Произошла ошибка, попробуйте перезагрузить страницу.');
       formFilterSwitch(true);
     });
@@ -38,10 +36,10 @@ const sendData = (formData) => {
     body: formData,
   }).then((response) => {
     if (response.ok) {
-      successMessage('onSuccessSend');
+      successMessage();
       resetFormData();
     } else {
-      errorMessage('error');
+      errorMessage();
     }
   });
 };

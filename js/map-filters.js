@@ -47,16 +47,10 @@ const makeFilters = (data) => {
       switch (selectPrice.value) {
         case 'low':
           return dat.offer.price < LOW_PRICE;
-          // eslint-disable-next-line no-unreachable
-          break;
         case 'middle':
           return dat.offer.price >= LOW_PRICE && dat.offer.price < HIGH_PRICE;
-          // eslint-disable-next-line no-unreachable
-          break;
         case 'high':
           return dat.offer.price >= HIGH_PRICE;
-          // eslint-disable-next-line no-unreachable
-          break;
         default:
           break;
       }

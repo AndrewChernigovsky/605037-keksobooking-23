@@ -6,8 +6,8 @@ const bodyMain = document.querySelector('body');
 const SHOW_ERROR_TIME = 5000;
 const KEY_ESCAPE = 27;
 const Z_INDEX_ERROR_MESSAGE = 1000;
-// eslint-disable-next-line no-unused-vars
-const successMessage = function (message) {
+
+const successMessage = () => {
   const template = document.querySelector('#success').content.cloneNode(true);
   bodyMain.appendChild(template);
   const messageSuccess = document.querySelector('.success');
@@ -24,8 +24,8 @@ const successMessage = function (message) {
 
   window.addEventListener('keydown', onSuccessClose);
 };
-// eslint-disable-next-line no-unused-vars
-const errorMessage = (typeMessage) => {
+
+const errorMessage = () => {
   const templateModal = document
     .querySelector('#error')
     .content.querySelector('.error');
