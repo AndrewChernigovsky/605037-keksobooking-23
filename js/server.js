@@ -30,7 +30,7 @@ const getData = (onSuccess) => {
     });
 };
 
-const sendUrl = 'https://23.javascript.pages.academy/keksobooking1';
+const sendUrl = 'https://23.javascript.pages.academy/keksobooking';
 
 const sendData = (onSuccessSend, onFail, formData) => {
   fetch(sendUrl, {
