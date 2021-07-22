@@ -1,6 +1,9 @@
 import { formAdSwitch, onRoomChange, housePrice} from './form.js';
 import { makeCard } from './generation.js';
 
+const MAIN_ICON_ADDRESS = './img/main-pin.svg';
+const ICON_ADDRESS = './img/pin.svg';
+
 const MIN_PRICE = 1000;
 
 const X_ICON_MAINSIZE_MARKER = 52;
@@ -53,7 +56,7 @@ L.tileLayer(
 ).addTo(mapCanvas);
 
 const iconMain = L.icon({
-  iconUrl: './img/main-pin.svg',
+  iconUrl: MAIN_ICON_ADDRESS,
   iconSize: iconMainSizeMarker.iconsSize,
   iconAnchor: iconMainSizeMarker.iconsAnchor,
 });
@@ -86,7 +89,7 @@ const pin =  L.layerGroup().addTo(mapCanvas);
 const createPins = (point) => {
   point.forEach(({ location, offer, author }) => {
     const iconPin = L.icon({
-      iconUrl: './img/pin.svg',
+      iconUrl: ICON_ADDRESS,
       iconSize: iconPinSizeMarker.iconsSize,
       iconAnchor: iconPinSizeMarker.iconsAnchor,
     });

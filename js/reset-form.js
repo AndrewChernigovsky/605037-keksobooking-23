@@ -1,11 +1,10 @@
 import { marker, defaultCoord, mapCanvas, pin, createPins} from './map.js';
-import {makeFilters} from './map-filters.js';
+import {makeFilters, ALL_CHOICE} from './map-filters.js';
 import {offers} from './server.js';
 
-const bodyMain = document.querySelector('body');
 const SHOW_ERROR_TIME = 5000;
 const KEY_ESCAPE = 27;
-const Z_INDEX_ERROR_MESSAGE = 1000;
+const bodyMain = document.querySelector('body');
 
 const successMessage = () => {
   const template = document.querySelector('#success').content.cloneNode(true);
@@ -54,11 +53,11 @@ const resetFormData = () => {
   const selectGuestsFilter = document.querySelector('#housing-guests');
   const selectFeaturesFilter = document.querySelector('#housing-features');
   formDataFilter.reset();
-  selectTypeFilter.value = 'any';
-  selectRoomsFilter.value = 'any';
-  selectPriceFilter.value = 'any';
-  selectGuestsFilter.value = 'any';
-  selectFeaturesFilter.value = 'any';
+  selectTypeFilter.value = ALL_CHOICE;
+  selectRoomsFilter.value = ALL_CHOICE;
+  selectPriceFilter.value = ALL_CHOICE;
+  selectGuestsFilter.value = ALL_CHOICE;
+  selectFeaturesFilter.value = ALL_CHOICE;
 
   const inputAddress = document.querySelector('#address');
   const selectRooms = document.querySelector('#room_number');
@@ -83,18 +82,31 @@ button.addEventListener('click', (evt) => {
 });
 
 const showAlertError = (message) => {
+  const styleContainer = {
+    zindex: 1000,
+    position: 'fixed',
+    left: 0,
+    top: '30%',
+    right: 0,
+    padding: '10px 3px',
+    fontSize: '30px',
+    textAlign: 'center',
+    backgroundColor: 'black',
+    color: 'white',
+    textContent: message,
+  };
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = Z_INDEX_ERROR_MESSAGE;
-  alertContainer.style.position = 'fixed';
-  alertContainer.style.left = 0;
-  alertContainer.style.top = '30%';
-  alertContainer.style.right = 0;
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'black';
-  alertContainer.style.color = 'white';
-  alertContainer.textContent = message;
+  alertContainer.style.zIndex = styleContainer.zindex;
+  alertContainer.style.position = styleContainer.position;
+  alertContainer.style.left = styleContainer.left;
+  alertContainer.style.top = styleContainer.top;
+  alertContainer.style.right = styleContainer.right;
+  alertContainer.style.padding = styleContainer.padding;
+  alertContainer.style.fontSize = styleContainer.fontSize;
+  alertContainer.style.textAlign = styleContainer.textAlign;
+  alertContainer.style.backgroundColor = styleContainer.backgroundColor;
+  alertContainer.style.color = styleContainer.color;
+  alertContainer.textContent = styleContainer.textContent;
   document.body.append(alertContainer);
   setTimeout(() => {
     alertContainer.remove();
